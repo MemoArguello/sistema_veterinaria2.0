@@ -7,17 +7,20 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
+html, body {
   height: 100%;
   margin: 0;
+}
+
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url("../img/fondo.webp");
   background-size: cover; 
   background-position: center; 
-  background-repeat: no-repeat; 
 }
+
 nav {
   position: absolute;
   top: 0;
@@ -92,7 +95,7 @@ nav.open .sidebar {
   color: #707070;
 }
 .nav-link .link {
-  font-size: 16px;
+  font-size: 14px;
   color: #707070;
   font-weight: 400;
   margin-left: 35px;
@@ -119,8 +122,8 @@ nav.open ~ .overlay {
 }
 
 img{
-  height: 25px;
-  width: 25px;
+  height: 18px;
+  width: 18px;
 }
 
 /*CSS DEL FORMULARIO*/
@@ -422,32 +425,37 @@ tr:nth-child(even) {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: 5px;
+
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
+  color: rgb(255, 255, 255);
+  background-color: #2351ce;
+  padding: 5px 5px;
   text-decoration: none;
   display: block;
+  border-radius: 5px;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: #4f69ff}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #ffffff;
+  background-color: #2351ce;
 }
 
 .container_listado {
   position: relative;
   max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 .botonReporte {
   display: inline-block;
@@ -475,6 +483,18 @@ tr:nth-child(even) {
   top: 20px;
 }
 
+.reporteAuditoria {
+  display: inline-block;
+  background-color: #118305;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  position: absolute;
+  right: 40px;
+  top: 20px;
+}
 .botonGuardar i {
   margin-right: 8px;
 }
@@ -497,7 +517,6 @@ th, td {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -506,3 +525,35 @@ th, td {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+    /* Estilos para las columnas del formulario */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+  }
+
+  .col-25,
+  .col-75 {
+      padding: 0 10px;
+      box-sizing: border-box;
+  }
+
+  .col-25 {
+      flex: 25%;
+      max-width: 25%;
+  }
+
+  .col-75 {
+      flex: 75%;
+      max-width: 75%;
+  }
+
+  .table-container {
+      max-height: 300px;
+      background-color: #2351ce;
+      overflow-y: auto;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      color: #fff;
+  }

@@ -12,7 +12,7 @@ $auditorias = $consulta->fetchAll(PDO::FETCH_OBJ);
 
 <div class="container_listado">
     <h1>Auditoria</h1>
-    <a class="botonReporte" href="<?= $Direccion ?>vacunas/pdf_vacunas.php" target="_blank">
+    <a class="reporteAuditoria" href="<?= $Direccion ?>vacunas/pdf_vacunas.php" target="_blank">
         <i class="fas fa-plus"></i> Reporte PDF
     </a>
     <table>
