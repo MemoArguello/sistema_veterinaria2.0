@@ -25,6 +25,10 @@ $productos = $consulta->fetch(PDO::FETCH_OBJ);
                 <div class="input-field">
                     <input type="text" name="stock" placeholder="" required value="<?=$productos->stock?>">
                 </div>
+                <label for="nombre" class="label">Precio</label>
+                <div class="input-field">
+                    <input type="text" name="precio" placeholder="" required value="<?=$productos->precio?>">
+                </div>
                 <div class="input-field">
                     <select name="id_categoria" required>
                         <option value="">Categoria</option>

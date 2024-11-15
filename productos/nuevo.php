@@ -19,6 +19,10 @@
                 <div class="input-field">
                     <input type="text" name="stock" placeholder="" required>
                 </div>
+                <label for="nombre" class="label">Precio</label>
+                <div class="input-field">
+                    <input type="number" name="precio" placeholder="" required>
+                </div>
                 <div class="input-field">
                     <select name="id_categoria" required>
                         <option value="">Categoria</option>

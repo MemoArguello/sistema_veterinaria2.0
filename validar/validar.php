@@ -12,7 +12,7 @@
 
 
         if ($resultado) {
-            header("Location: ../menu/menu.php");
+            header("Location: ../inicio/inicio.php");
             $_SESSION['id_usuario'] = $resultado['id_usuario'];
 
         } else {

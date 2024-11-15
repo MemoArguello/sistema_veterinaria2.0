@@ -26,6 +26,7 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
         <th>ID</th>
         <th>Nombre</th>
         <th>Stock</th>
+        <th>Precio</th>
         <th>Proveedor</th>
         <th>Categoria</th>
         <th></th>
@@ -36,6 +37,7 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
       <td><?= $producto->id_producto ?></td>
       <td><?= $producto->nombre_producto ?></td>
       <td><?= $producto->stock ?></td>
+      <td><?= $producto->precio ?></td>
       <td><?= $producto->nombre_proveedor ?></td>
       <td><?= $producto->nombre_categoria ?></td>
       <td>

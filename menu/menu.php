@@ -18,7 +18,7 @@ $Direccion = "http://localhost/sistema_veterinaria/";
 
   <!-- ===== Iconscout CSS ===== -->
   <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -37,7 +37,7 @@ $Direccion = "http://localhost/sistema_veterinaria/";
       <div class="sidebar-content">
         <ul class="lists">
           <li class="list">
-          <a href="<?= $Direccion ?>inicio/auditoria.php" class="nav-link">
+          <a href="<?= $Direccion ?>inicio/inicio.php" class="nav-link">
               <img src="<?= $Direccion ?>img/inicio.png" alt="">
               <span class="link">Inicio</span>
             </a>

@@ -7,6 +7,7 @@ if (empty($_POST["nombre_producto"]) || empty($_POST["stock"])) {
 } else {
     $nombre = $_POST["nombre_producto"];
     $stock = $_POST["stock"];
+    $precio = $_POST["precio"];
     $id_proveedor = $_POST["id_proveedor"];
     $id_categoria = $_POST["id_categoria"];
 
@@ -16,8 +17,8 @@ if (empty($_POST["nombre_producto"]) || empty($_POST["stock"])) {
     $auditoria = $conexion->prepare("INSERT INTO auditoria (id_usuario, informacion) VALUES (?, ?)");
     $resultado_auditoria = $auditoria->execute([$id_usuario, $informacion]);
 
-    $guardar = $conexion->prepare("INSERT INTO producto (nombre_producto, stock, id_proveedor, id_categoria) VALUES (?, ?, ?, ?)");
-    $resultado = $guardar->execute([$nombre, $stock, $id_proveedor, $id_categoria]);
+    $guardar = $conexion->prepare("INSERT INTO producto (nombre_producto, stock, precio, id_proveedor, id_categoria) VALUES (?, ?, ?, ?, ?)");
+    $resultado = $guardar->execute([$nombre, $stock, $precio, $id_proveedor, $id_categoria]);
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
                 window.location.href='./nuevo.php';</script>";

@@ -3,7 +3,7 @@
 <?php
 
 
-$query4 = $conexion->prepare("SELECT * FROM categoria ORDER BY id_categoria");
+$query4 = $conexion->prepare("SELECT * FROM categoria WHERE estado=1");
 $query4->execute();
 $resultado4 = $query4->fetchAll(PDO::FETCH_ASSOC);
 
@@ -20,96 +20,81 @@ $query->execute();
 $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-<div class="container-venta">
-    <div class="forms">
-        <div class="form login">
-            <h2 class="title">Registrar Venta</h2>
-            <br>
-                <label for="nombre" class="label">Cedula del Cliente</label>
-                <div class="input-field">
-                    <input type="text" id="ciCliente" name="cedula" placeholder="Cedula" required>
-                </div>
-                <div class="input-field button">
-                    <button class="boton" onclick="consultarCliente();">Buscar</button>
-                </div>
-                <label for="nombre" class="label">Cliente</label>
-                <div class="input-field">
-                    <input type="text" id="nombreCliente" readonly placeholder="Nombre del Cliente">
-                </div>
-                <div class="input-field button">
-                    <button class="boton" onclick="insertarFactura();">Iniciar Factura</button>
-                </div>
-                <label for="nombre" class="label">Cliente</label>
-                <div class="input-field">
-                    <input type="text" id="numeroFactura" name="id_factura_cabecera" readonly>
-                </div>
-                <div class="left">
-                    <h2>Agrega un Productos:</h2>
-                </div>
-                <div class="input-field">
-                    <select name="id_categoria" required>
-                        <option value="">Categoria</option>
-                        <?php
-                        include '../db/db.php';
-                        $sentencia = $conexion->query("SELECT * FROM categoria");
-                        $categorias = $sentencia->fetchAll(PDO::FETCH_OBJ);
-                        foreach ($categorias as $categoria) {
-                            echo "<option value='" . $categoria->id_categoria . "'>" . $categoria->nombre_categoria . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="input-field">
-                <select name="producto[]" id="id_producto" required>
-                            <option value="" disabled selected>Selecciona primero la categoría</option>
-                        </select>
-                </div>
-                <label for="nombreCliente">Cantidad:</label>
-                <div class="input-field">
-                <input type="text" id="txtCantidad" name="cantidad" placeholder="Cantidad">
-                </div>
-                <div class="input-field button">
-                    <button class="boton" type="submit">Guardar</button>
-                </div>
-                <div class="input-field button">
-                    <button class="boton" onclick="consultarProducto();" id="btnAgregar">Agregar</button>
-                </div>
-                <div class="left">
-                    <h3>Productos Seleccionados</h3>
-                </div>
-                <div class="table-container">
-                    <table id="customers">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio Unitario</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultadoProducto">
+<div class="formulario-venta-container">
+    <h2 class="formulario-venta-titulo">Registrar Venta</h2>
 
-                        </tbody>
-                    </table>
-                </div>
-                <table id="customers">
-                    <tfoot>
-                        <tr>
-                            <th id="subtotal">Sub Total:</th>
-                            <th id="iva">IVA %:</th>
-                            <th id="total">Total Factura:</th>
-                        </tr>
-                    </tfoot>
-                </table>
-                <br>
-                <div class="left">
-                    <h4>Finalizar e Imprimir Factura</h4>
-                </div>
-                <div class="input-field button">
-                    <button class="boton" onclick="imprimirFactura();" id="btnAgregar">Imprimir</button>
-                </div>
-        </div>
+    <div class="formulario-venta-field">
+        <label for="ciCliente" class="formulario-venta-label">Cédula del Cliente</label>
+        <input type="text" id="ciCliente" name="cedula" placeholder="Cédula" required class="formulario-venta-input">
+        <button class="formulario-venta-boton" onclick="consultarCliente();">Buscar</button>
+    </div>
+
+    <div class="formulario-venta-field">
+        <label for="nombreCliente" class="formulario-venta-label">Nombre del Cliente</label>
+        <input type="text" id="nombreCliente" readonly placeholder="Nombre del Cliente" class="formulario-venta-input">
+        <button class="formulario-venta-boton2" onclick="insertarFactura();">Iniciar Factura</button>
+    </div>
+
+    <div class="formulario-venta-field">
+        <label for="numeroFactura" class="formulario-venta-label">Número de Factura</label>
+        <input type="text" id="numeroFactura" name="id_factura_cabecera" readonly class="formulario-venta-input">
+    </div>
+
+    <div class="input-field">
+        <label for="id_categoria" class="label">Categoría</label>
+        <select name="categoria" id="categoria" onchange="cargarProductos(this.value)" required>
+            <option value="" disabled selected>Selecciona una categoria</option>
+            <?php
+            foreach ($resultado4 as $categoria) {
+                echo "<option value='" . $categoria['id_categoria'] . "'>" . $categoria['nombre_categoria'] . "</option>";
+            }
+            ?>
+        </select>
+    </div>
+
+    <div class="input-field">
+        <label for="id_producto" class="label">Producto</label>
+        <select name="producto[]" id="id_producto" required>
+            <option value="" disabled selected>Selecciona primero la categoría</option>
+
+        </select>
+    </div>
+    <br>
+    <div class="formulario-venta-field">
+        <label for="txtCantidad" class="formulario-venta-label">Cantidad</label>
+        <input type="text" id="txtCantidad" name="cantidad" placeholder="Cantidad" class="formulario-venta-input">
+        <button class="formulario-venta-boton" onclick="consultarProducto();" id="btnAgregar">Agregar</button>
+    </div>
+
+    <div class="formulario-venta-table-container">
+        <table class="formulario-venta-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="resultadoProducto">
+
+            </tbody>
+        </table>
+    </div>
+
+    <table class="formulario-venta-table">
+        <tfoot>
+            <tr>
+                <th id="subtotal">Sub Total:</th>
+                <th id="iva">IVA %:</th>
+                <th id="total">Total Factura:</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="formulario-venta-field">
+        <button class="formulario-venta-boton" onclick="imprimirFactura();" id="btnImprimir">Finalizar e Imprimir</button>
     </div>
 </div>
 
@@ -121,22 +106,39 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
     var subTotalGeneral = 0;
 
     function cargarProductos(categoria) {
-        // Realizar solicitud AJAX para obtener las ciudades del departamento seleccionado
+        // Verificar que la categoría sea válida antes de continuar
+        if (!categoria) {
+            document.getElementById("id_producto").innerHTML = '<option value="">Seleccione primero la categoría</option>';
+            return;
+        }
+
+        // Realizar solicitud AJAX
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Procesar la respuesta y actualizar el select de ciudades
-                var productos = JSON.parse(this.responseText);
-                var options = '<option value="">Seleccione una opción</option>'; // Opción en blanco por defecto
-                for (var i = 0; i < productos.length; i++) {
-                    options += '<option value="' + productos[i].id_producto + '">' + productos[i].nombre_producto + '</option>';
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    try {
+                        // Procesar la respuesta y actualizar el select de productos
+                        var productos = JSON.parse(this.responseText);
+                        var options = '<option value="">Seleccione una opción</option>'; // Opción en blanco
+                        for (var i = 0; i < productos.length; i++) {
+                            options += '<option value="' + productos[i].id_producto + '">' + productos[i].nombre_producto + '</option>';
+                        }
+                        document.getElementById("id_producto").innerHTML = options;
+                    } catch (error) {
+                        console.error("Error procesando la respuesta JSON:", error);
+                        alert("Error al cargar los productos. Intente nuevamente.");
+                    }
+                } else {
+                    console.error("Error en la solicitud AJAX:", this.statusText);
+                    alert("Error al cargar los productos. Intente más tarde.");
                 }
-                document.getElementById("id_producto").innerHTML = options;
             }
         };
-        xhttp.open("GET", "./get_producto.php?id_categoria=" + categoria, true);
+        xhttp.open("GET", "get_producto.php?id_categoria=" + encodeURIComponent(categoria), true);
         xhttp.send();
     }
+
 
     function cancelarFactura() {
         var numeroFactura = document.getElementById("numeroFactura").value;
@@ -206,7 +208,13 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
     function consultarCliente() {
-        var ciCliente = document.getElementById("ciCliente").value;
+        var ciCliente = document.getElementById("ciCliente").value.trim();
+
+        if (ciCliente === "") {
+            alert("Debe ingresar la cédula del cliente.");
+            return;
+        }
+
         $.ajax({
             url: 'consultar_cliente.php',
             method: 'POST',
@@ -216,14 +224,18 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
             dataType: 'json',
             success: function(data) {
                 if (data.error) {
-                    alert(data.error)
+                    alert(data.error);
                 } else {
-                    document.getElementById("nombreCliente").value = data.nombre_cliente;
+                    document.getElementById("nombreCliente").value = data.nombre;
                     id = data.id_cliente;
                 }
+            },
+            error: function() {
+                alert("Error en la solicitud al servidor.");
             }
-        })
+        });
     }
+
 
     function insertarFactura() {
         $.ajax({
@@ -235,9 +247,9 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
             dataType: 'json',
             success: function(data) {
                 if (data.success) {
-                    var id_factura = data.id_factura
-                    document.getElementById("numeroFactura").value = data.id_factura;
-                    idFactura = id_factura;
+                    var id_cabecera = data.id_cabecera
+                    document.getElementById("numeroFactura").value = data.id_cabecera;
+                    idFactura = id_cabecera;
                 } else {
                     alert("Error al insertar la factura" + data.error)
                 }
@@ -264,7 +276,6 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
                     var fila = document.createElement("tr")
                     let subtotal = data.precio * cant;
                     subTotalGeneral += subtotal;
-                    //Iva = subTotalGeneral *0.19;
                     Iva = 0;
                     total = subTotalGeneral += Iva;
                     insertarFactura_detalle(idFactura, data.id_producto, cant, data.precio, subtotal);
