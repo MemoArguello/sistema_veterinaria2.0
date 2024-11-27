@@ -26,8 +26,8 @@ if (empty($_POST["id_producto"]) || empty($_POST["id_proveedor"]) || empty($_POS
     $precio_compra = $_POST["precio_compra"];
     $total_pagar = $cantidad * $precio_compra;
     
-    $ingreso_actual = $_POST["ingreso"];
-    $nuevo_ingreso = $ingreso_actual + $total_pagar;
+    $egreso_actual = $_POST["egreso"];
+    $nuevo_ingreso = $egreso_actual + $total_pagar;
 
     $sentencia_caja = $conexion->prepare("UPDATE caja SET egreso=? WHERE estado_caja = ?");
     $resultado_caja = $sentencia_caja->execute([$nuevo_ingreso, $estado_caja]);

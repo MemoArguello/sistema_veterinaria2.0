@@ -3,7 +3,7 @@
 <?php
 
 include '../db/db.php';
-$sentencia = $conexion->query("SELECT * FROM producto WHERE estado=1");
+$sentencia = $conexion->query("SELECT * FROM producto WHERE estado = 1 AND id_proveedor IS NOT NULL");
 $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
 $sentencia = $conexion->query("SELECT * FROM proveedor WHERE estado=1");
@@ -20,7 +20,7 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
         <div class="form login">
             <span class="title">Registrar Compras</span>
             <form action="./guardar.php" method="POST">
-            <input type="hidden" name="id_usuario" placeholder="" required value="<?=$_SESSION['id_usuario']?>"> 
+                <input type="hidden" name="id_usuario" placeholder="" required value="<?= $_SESSION['id_usuario'] ?>">
                 <label for="nombre" class="label">Nombre de Productos</label>
                 <div class="input-field">
                     <select name="id_producto" required>
@@ -53,8 +53,8 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
                 </div>
                 <div class="input-field button">
                     <button class="boton" type="submit">Guardar</button>
-                    <input type="hidden" name="stock" value="<?=$producto->stock?>">
-                    <input type="hidden" name="ingreso" value="<?=$caja->egreso?>">
+                    <input type="hidden" name="stock" value="<?= $producto->stock ?>">
+                    <input type="hidden" name="egreso" value="<?= $caja->egreso ?>">
                 </div>
             </form>
         </div>

@@ -20,6 +20,10 @@ $query->execute();
 $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
 $PaginaActual = basename($_SERVER['PHP_SELF']);
 
+$consulta = $conexion->query("SELECT * FROM caja WHERE estado_caja = 'Abierto'");
+$consulta->execute();
+
+$caja = $consulta->fetch(PDO::FETCH_OBJ);
 
 ?>
 <div class="container-venta2">
@@ -31,6 +35,7 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
         </a>
     </div>
     <div class="formulario-venta-container">
+        <input type="hidden" id="ingreso" name="ingreso" value="<?= $caja->ingreso ?>">
         <h2 class="formulario-venta-titulo">Registrar Venta</h2>
 
         <div class="formulario-venta-field">
@@ -309,24 +314,28 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
     }
 
     function insertarFactura_detalle(id_factura_cabecera, producto, cantidad, precio, subtotal) {
-        $.ajax({
-            url: 'guardar_detalle_factura.php',
-            method: 'POST',
-            data: {
-                id_factura_cabecera: id_factura_cabecera,
-                id_producto: producto,
-                cantidad: cantidad,
-                precio: precio,
-                subtotal: subtotal
-            },
-            dataType: 'json',
-            success: function(data) {
-                if (data.success) {
-                    alert("Producto agregado Correctamente")
-                } else {
-                    alert("Error al insertar el producto" + data.error)
-                }
+    const ingreso = document.getElementById('ingreso').value;
+
+    $.ajax({
+        url: 'guardar_detalle_factura.php',
+        method: 'POST',
+        data: {
+            id_factura_cabecera: id_factura_cabecera,
+            id_producto: producto,
+            cantidad: cantidad,
+            precio: precio,
+            subtotal: subtotal,
+            ingreso: ingreso 
+        },
+        dataType: 'json',
+        success: function(data) {
+            if (data.success) {
+                alert("Producto agregado Correctamente");
+            } else {
+                alert("Error al insertar el producto: " + data.error);
             }
-        })
-    }
+        }
+    });
+}
+
 </script>
