@@ -37,7 +37,7 @@ $mascotas = $consulta->fetchAll(PDO::FETCH_OBJ);
       <td><?= $mascota->especie ?></td>
       <td><?= $mascota->raza ?></td>
       <td><?= $mascota->sexo ?></td>
-      <td><?= $mascota->id_cliente ?></td>
+      <td><?= $mascota->nombre ?></td>
       <td>
         <div class="dropdown">
           <button class="dropbtn">Opciones</button>

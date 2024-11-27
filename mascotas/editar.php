@@ -7,7 +7,7 @@ try {
         $especie = $_POST["especie"];
         $raza = $_POST["raza"];
         $sexo= $_POST["sexo"];
-        $dueño= $_POST["id_dueño"];
+        $dueño= $_POST["id_cliente"];
 
         $id_usuario = $_POST["id_usuario"];
         $informacion = "Se edito una mascota";
@@ -15,7 +15,7 @@ try {
         $auditoria = $conexion->prepare("INSERT INTO auditoria (id_usuario, informacion) VALUES (?, ?)");
         $resultado_auditoria = $auditoria->execute([$id_usuario, $informacion]);
 
-        $sentencia = $conexion->prepare("UPDATE mascota SET nombre=?, especie=?, raza=?, sexo=?,  id_dueño=?   WHERE id_mascota = ?;");
+        $sentencia = $conexion->prepare("UPDATE mascota SET nombre=?, especie=?, raza=?, sexo=?, id_cliente=?   WHERE id_mascota = ?;");
         $resultado = $sentencia->execute([$nombre, $especie, $raza, $sexo, $dueño, $id]);
         if($resultado === TRUE) {
             echo "<script>alert('Mascota Editado');

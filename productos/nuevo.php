@@ -28,7 +28,7 @@
                         <option value="">Categoria</option>
                         <?php
                         include '../db/db.php';
-                        $sentencia = $conexion->query("SELECT * FROM categoria");
+                        $sentencia = $conexion->query("SELECT * FROM categoria WHERE estado=1");
                         $categorias = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         foreach ($categorias as $categoria) {
                             echo "<option value='" . $categoria->id_categoria . "'>" . $categoria->nombre_categoria . "</option>";
@@ -41,7 +41,7 @@
                         <option value="">Proveedor</option>
                         <?php
                         include '../db/db.php';
-                        $sentencia = $conexion->query("SELECT * FROM proveedor");
+                        $sentencia = $conexion->query("SELECT * FROM proveedor WHERE estado=1");
                         $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         foreach ($proveedores as $proveedor) {
                             echo "<option value='" . $proveedor->id_proveedor . "'>" . $proveedor->nombre_proveedor . "</option>";

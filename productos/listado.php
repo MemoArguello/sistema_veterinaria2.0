@@ -35,9 +35,10 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
         <th></th>
       </tr>
       <tr>
-        <?php foreach ($productos as $producto): ?>
+        <?php $i = 1;
+        foreach ($productos as $producto): ?>
       <tr>
-        <td><?= $producto->id_producto ?></td>
+        <td><?= $i++ ?></td>
         <td><?= $producto->nombre_producto ?></td>
         <td><?= $producto->stock == 0 ? 'No Aplica' : $producto->stock ?></td>
         <td data-label=""><?= number_format($producto->precio, 0, ',', '.') ?>Gs.</td>

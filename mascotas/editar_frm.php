@@ -39,7 +39,7 @@ $mascota = $consulta->fetch(PDO::FETCH_OBJ);
                 </div>
                 <label for="nombre" class="label">Dueño</label>
                 <div class="input-field">
-                    <select name="id_dueño" required>
+                    <select name="id_cliente" required>
                         <option value="">Dueño</option>
                         <?php
                         include '../db/db.php';

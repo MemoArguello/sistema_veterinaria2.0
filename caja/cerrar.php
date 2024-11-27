@@ -13,7 +13,7 @@ if (empty($_POST["fecha_cierre"])) {
     $egreso = $_POST["egreso"];
     $ingreso = $_POST["ingreso"];
 
-    $monto_cierre = $egreso + $ingreso;
+    $monto_cierre = $ingreso - $egreso;
     $id_usuario = $_POST["id_usuario"];
     $informacion = "Se dio Cierre a una caja";
 
