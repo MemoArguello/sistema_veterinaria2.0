@@ -43,10 +43,10 @@ $mascota = $consulta->fetch(PDO::FETCH_OBJ);
                         <option value="">Dueño</option>
                         <?php
                         include '../db/db.php';
-                        $sentencia = $conexion->query("SELECT * FROM cliente");
+                        $sentencia = $conexion->query("SELECT * FROM cliente WHERE estado=1");
                         $clientes = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         foreach ($clientes as $cliente) {
-                            echo "<option value='" . $cliente->id_dueño . "'>" . $cliente->nombre_cliente . "</option>";
+                            echo "<option value='" . $cliente->id_dueño . "'>" . $cliente->nombre . "</option>";
                         }
                         ?>
                     </select>

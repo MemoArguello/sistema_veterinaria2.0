@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 include "../db/db.php";
 
 if (empty($_POST["fecha_apertura"])) {
@@ -6,6 +7,8 @@ if (empty($_POST["fecha_apertura"])) {
                 window.location.href='./nuevo.php';</script>";
 } else {
     $fecha_apertura = $_POST["fecha_apertura"];
+    $fecha_actual = date('Y-m-d');
+
     $id_usuario = $_POST["id_usuario"];
     $informacion = "Se dio apertura a una caja";
 
@@ -20,16 +23,21 @@ if (empty($_POST["fecha_apertura"])) {
         $auditoria = $conexion->prepare("INSERT INTO auditoria (id_usuario, informacion) VALUES (?, ?)");
         $resultado_auditoria = $auditoria->execute([$id_usuario, $informacion]);
 
-        $guardar = $conexion->prepare("INSERT INTO caja (fecha_apertura, estado_caja) VALUES (?, 'Abierto')");
-        $resultado = $guardar->execute([$fecha_apertura]);
+        if ($fecha_apertura >= $fecha_actual) {
+            $guardar = $conexion->prepare("INSERT INTO caja (fecha_apertura, estado_caja) VALUES (?, 'Abierto')");
+            $resultado = $guardar->execute([$fecha_apertura]);
 
-        if ($resultado === TRUE) {
-            echo "<script>alert('Se registró correctamente la caja');
-                    window.location.href='./listado.php';</script>";
+            if ($resultado === TRUE) {
+                echo "<script>alert('Se registró correctamente la caja');
+                        window.location.href='./listado.php';</script>";
+            } else {
+                echo "<script>alert('No se pudo registrar la caja');
+                        window.location.href='./listado.php';</script>";
+            }
         } else {
-            echo "<script>alert('No se pudo registrar la caja');
-                    window.location.href='./listado.php';</script>";
+            echo "<script>alert('La fecha de apertura no puede ser una fecha pasada.');
+                    window.location.href='./nuevo.php';</script>";
         }
+
     }
 }
-?>

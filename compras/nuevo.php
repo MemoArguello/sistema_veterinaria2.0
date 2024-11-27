@@ -54,7 +54,11 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
                 <div class="input-field button">
                     <button class="boton" type="submit">Guardar</button>
                     <input type="hidden" name="stock" value="<?= $producto->stock ?>">
-                    <input type="hidden" name="egreso" value="<?= $caja->egreso ?>">
+                    <?php if ($caja): ?>
+                        <input type="hidden" name="egreso" value="<?= $caja->egreso ?>">
+                        <?php else: ?>
+                        <input type="hidden" id="egreso" name="egreso" value="0">
+                    <?php endif; ?>
                 </div>
             </form>
         </div>

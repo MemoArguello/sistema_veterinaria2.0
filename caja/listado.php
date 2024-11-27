@@ -34,10 +34,10 @@ $cajas = $consulta->fetchAll(PDO::FETCH_OBJ);
                 <td data-label=""><?= $caja->id_caja ?></td>
                 <td data-label=""><?= $caja->fecha_apertura ?></td>
                 <td data-label=""><?= $caja->fecha_cierre ?></td>
-                <td data-label=""><?= $caja->ingreso ?> Gs.</td>
-                <td data-label=""><?= $caja->egreso ?> Gs.</td>
-                <td data-label=""><?= $caja->saldo_cierre ?> Gs.</td>
-                <td data-label=""><?= $caja->estado_caja?></td>
+                <td data-label=""><?= number_format($caja->ingreso, 0, ',', '.') ?>Gs.</td>
+                <td data-label=""><?= number_format($caja->egreso, 0, ',', '.') ?>Gs.</td>
+                <td data-label=""><?= number_format($caja->saldo_cierre, 0, ',', '.') ?>Gs.</td>
+                <td data-label=""><?= $caja->estado_caja ?></td>
                 <td>
                     <div class="dropdown">
                         <button class="dropbtn">Opciones</button>

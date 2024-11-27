@@ -10,10 +10,10 @@ $consulta->execute();
 $compras = $consulta->fetch(PDO::FETCH_OBJ);
 
 
-$sentencia = $conexion->query("SELECT * FROM producto");
+$sentencia = $conexion->query("SELECT * FROM producto WHERE estado=1");
 $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-$sentencia = $conexion->query("SELECT * FROM proveedor");
+$sentencia = $conexion->query("SELECT * FROM proveedor WHERE estado=1");
 $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
 
@@ -30,7 +30,7 @@ $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         <option value="">Productos</option>
                         <?php
                         foreach ($productos as $producto) {
-                            $selected = ($producto->id_producto == $producto->id_producto) ? 'selected' : '';
+                            $selected = ($producto->id_producto == $compras->id_producto) ? 'selected' : '';
                             echo "<option value='" . $producto->id_producto . "' $selected>" . $producto->nombre_producto . "</option>";
                         }
                         ?>
@@ -42,7 +42,7 @@ $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         <option value="">Proveedor</option>
                         <?php
                         foreach ($proveedores as $proveedor) {
-                            $selected = ($proveedor->id_proveedor == $producto->id_proveedor) ? 'selected' : '';
+                            $selected = ($proveedor->id_proveedor == $compras->id_proveedor) ? 'selected' : '';
                             echo "<option value='" . $proveedor->id_proveedor . "' $selected>" . $proveedor->nombre_proveedor . "</option>";
                         }
                         ?>

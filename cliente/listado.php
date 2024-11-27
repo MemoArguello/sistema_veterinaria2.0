@@ -25,9 +25,9 @@ $clientes = $consulta->fetchAll(PDO::FETCH_OBJ);
       <th></th>
     </tr>
     <tr>
-      <?php foreach ($clientes as $cliente): ?>
+      <?php $i=1; foreach ($clientes as $cliente): ?>
     <tr>
-      <td><?= $cliente->id_cliente ?></td>
+      <td><?= $i++ ?></td>
       <td><?= $cliente->nombre ?></td>
       <td><?= $cliente->cedula_ruc ?></td>
       <td>

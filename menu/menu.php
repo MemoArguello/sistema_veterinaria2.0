@@ -1,6 +1,7 @@
 <?php
 session_start();
 $Direccion = "http://localhost/sistema_veterinaria/";
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 
 if (!isset($_SESSION['id_usuario'])) {
   header("location:".$Direccion);

@@ -19,7 +19,7 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
             <i class="fa fa-bars"></i>
         </a>
     </div>
-    <div class="container_listado">
+    <div class="container_listado-venta">
         <h1>Auditoria</h1>
         <a class="reporteAuditoria" href="<?= $Direccion ?>vacunas/pdf_vacunas.php" target="_blank">
             <i class="fas fa-plus"></i> Reporte PDF

@@ -26,9 +26,9 @@ $veterinarios = $consulta->fetchAll(PDO::FETCH_OBJ);
         <th></th>
       </tr>
     <tr>
-      <?php foreach ($veterinarios as $veterinario): ?>
+      <?php $i=1; foreach ($veterinarios as $veterinario): ?>
     <tr>
-      <td><?= $veterinario->id_veterinaria ?></td>
+      <td><?= $i++?></td>
       <td><?= $veterinario->nombre ?></td>
       <td><?= $veterinario->telefono ?></td>
       <td><?= $veterinario->registro ?></td>

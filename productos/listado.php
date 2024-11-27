@@ -40,14 +40,19 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
         <td><?= $producto->id_producto ?></td>
         <td><?= $producto->nombre_producto ?></td>
         <td><?= $producto->stock == 0 ? 'No Aplica' : $producto->stock ?></td>
-        <td><?= $producto->precio ?></td>
+        <td data-label=""><?= number_format($producto->precio, 0, ',', '.') ?>Gs.</td>
         <td><?= $producto->nombre_proveedor ?? 'No Aplica' ?></td>
         <td><?= $producto->nombre_categoria ?></td>
         <td>
           <div class="dropdown">
             <button class="dropbtn">Opciones</button>
             <div class="dropdown-content">
-              <a href="editar_frm.php?id=<?= $producto->id_producto ?>">Editar</a>
+              <?php if ($producto->nombre_proveedor == null) : ?>
+                <a href="<?= $Direccion ?>productos/editar_servicio.php?id=<?= $producto->id_producto ?>">Editar Servicio</a>
+              <?php else: ?>
+                <a href="editar_frm.php?id=<?= $producto->id_producto ?>">Editar Producto</a>
+              <?php endif;
+              ?>
               <a href="eliminar.php?id=<?= $producto->id_producto ?>">Eliminar</a>
             </div>
           </div>

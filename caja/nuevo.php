@@ -1,9 +1,5 @@
 <?php require "../menu/menu.php"?>
 
-<?php 
-
-
-?>
     <div class="container">
         <div class="forms">
             <div class="form login">

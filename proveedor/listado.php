@@ -26,9 +26,9 @@ $proveedores = $consulta->fetchAll(PDO::FETCH_OBJ);
       <th></th>
     </tr>
     <tr>
-      <?php foreach ($proveedores as $proveedor): ?>
+      <?php $i=1; foreach ($proveedores as $proveedor): ?>
     <tr>
-      <td><?= $proveedor->id_proveedor ?></td>
+      <td><?= $i++ ?></td>
       <td><?= $proveedor->nombre_proveedor ?></td>
       <td><?= $proveedor->ruc_proveedor ?></td>
       <td>

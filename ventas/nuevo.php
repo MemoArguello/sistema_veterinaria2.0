@@ -35,7 +35,11 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
         </a>
     </div>
     <div class="formulario-venta-container">
-        <input type="hidden" id="ingreso" name="ingreso" value="<?= $caja->ingreso ?>">
+        <?php if ($caja): ?>
+            <input type="hidden" id="ingreso" name="ingreso" value="<?= $caja->ingreso ?>">
+            <?php else: ?>
+            <input type="hidden" id="ingreso" name="ingreso" value="0">
+        <?php endif; ?>
         <h2 class="formulario-venta-titulo">Registrar Venta</h2>
 
         <div class="formulario-venta-field">
@@ -278,7 +282,7 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
         // Validar si cantidad está vacío
         if (cant.trim() === "") {
             alert("Debe agragar la cantidad primero");
-            return; 
+            return;
         }
 
 
@@ -314,28 +318,27 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
     }
 
     function insertarFactura_detalle(id_factura_cabecera, producto, cantidad, precio, subtotal) {
-    const ingreso = document.getElementById('ingreso').value;
+        const ingreso = document.getElementById('ingreso').value;
 
-    $.ajax({
-        url: 'guardar_detalle_factura.php',
-        method: 'POST',
-        data: {
-            id_factura_cabecera: id_factura_cabecera,
-            id_producto: producto,
-            cantidad: cantidad,
-            precio: precio,
-            subtotal: subtotal,
-            ingreso: ingreso 
-        },
-        dataType: 'json',
-        success: function(data) {
-            if (data.success) {
-                alert("Producto agregado Correctamente");
-            } else {
-                alert("Error al insertar el producto: " + data.error);
+        $.ajax({
+            url: 'guardar_detalle_factura.php',
+            method: 'POST',
+            data: {
+                id_factura_cabecera: id_factura_cabecera,
+                id_producto: producto,
+                cantidad: cantidad,
+                precio: precio,
+                subtotal: subtotal,
+                ingreso: ingreso
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.success) {
+                    alert("Producto agregado Correctamente");
+                } else {
+                    alert("Error al insertar el producto: " + data.error);
+                }
             }
-        }
-    });
-}
-
+        });
+    }
 </script>

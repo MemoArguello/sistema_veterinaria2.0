@@ -13,21 +13,17 @@ $productos = $consulta->fetch(PDO::FETCH_OBJ);
 <div class="container">
     <div class="forms">
         <div class="form login">
-            <span class="title">Editar Productos</span>
+            <span class="title">Registrar Servicio</span>
 
-            <form action="./editar.php" method="POST">
+            <form action="./editarServicio.php" method="POST">
             <input type="hidden" name="id_usuario" placeholder="" required value="<?=$_SESSION['id_usuario']?>"> 
                 <label for="nombre" class="label">Nombre</label>
                 <div class="input-field">
                     <input type="text" name="nombre_producto" placeholder="" required value="<?=$productos->nombre_producto?>">
                 </div>
-                <label for="nombre" class="label">Stock</label>
-                <div class="input-field">
-                    <input type="text" name="stock" placeholder="" required value="<?=$productos->stock?>">
-                </div>
                 <label for="nombre" class="label">Precio</label>
                 <div class="input-field">
-                    <input type="text" name="precio" placeholder="" required value="<?=$productos->precio?>">
+                    <input type="number" name="precio" placeholder="" value="<?=$productos->precio?>" required>
                 </div>
                 <div class="input-field">
                     <select name="id_categoria" required>
@@ -42,23 +38,9 @@ $productos = $consulta->fetch(PDO::FETCH_OBJ);
                         ?>
                     </select>
                 </div>
-                <div class="input-field">
-                    <select name="id_proveedor" required>
-                        <option value="">Proveedor</option>
-                        <?php
-                        $sentencia = $conexion->query("SELECT * FROM proveedor WHERE estado=1");
-                        $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
-                        foreach ($proveedores as $proveedor) {
-                            $selected = ($proveedor->id_proveedor == $productos->id_proveedor) ? 'selected' : '';
-                            echo "<option value='" . $proveedor->id_proveedor . "' $selected>" . $proveedor->nombre_proveedor . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
                 <div class="input-field button">
-                    <button class="boton" type="submit">Editar</button>
-                    <input type="hidden" name="id_producto" placeholder="" required value="<?=$productos->id_producto?>">
-                </div>
+                    <button class="boton" type="submit">Guardar</button>
+                    <input type="readonly" name="id_producto" placeholder="" required value="<?=$productos->id_producto?>">
                 </div>
             </form>
         </div>
