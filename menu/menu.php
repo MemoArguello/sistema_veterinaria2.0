@@ -2,6 +2,9 @@
 session_start();
 $Direccion = "http://localhost/sistema_veterinaria/";
 
+if (!isset($_SESSION['id_usuario'])) {
+  header("location:".$Direccion);
+}
 
 ?>
 <!DOCTYPE html>
@@ -19,19 +22,21 @@ $Direccion = "http://localhost/sistema_veterinaria/";
   <!-- ===== Iconscout CSS ===== -->
   <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/pet.webp">
 </head>
 
 <body>
   <nav>
     <div class="logo">
       <img src="<?= $Direccion ?>img/menu2.png" alt="" class="bx bx-menu menu-icon">
-      <span class="logo-name">Veterinaria</span>
+      <span class="logo-name">VETERINARIA</span>
     </div>
 
     <div class="sidebar">
       <div class="logo">
       <img src="<?= $Direccion ?>img/menu.png" alt="" class="bx bx-menu menu-icon">
-        <span class="logo-sidebar">Veterinaria</span>
+        <span class="logo-sidebar">VETERINARIA</span>
       </div>
 
       <div class="sidebar-content">

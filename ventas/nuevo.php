@@ -18,86 +18,95 @@ $resultado3 = $query3->fetchAll(PDO::FETCH_ASSOC);
 $query = $conexion->prepare("SELECT * FROM categoria");
 $query->execute();
 $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
+$PaginaActual = basename($_SERVER['PHP_SELF']);
+
 
 ?>
-<div class="formulario-venta-container">
-    <h2 class="formulario-venta-titulo">Registrar Venta</h2>
-
-    <div class="formulario-venta-field">
-        <label for="ciCliente" class="formulario-venta-label">Cédula del Cliente</label>
-        <input type="text" id="ciCliente" name="cedula" placeholder="Cédula" required class="formulario-venta-input">
-        <button class="formulario-venta-boton" onclick="consultarCliente();">Buscar</button>
+<div class="container-venta2">
+    <div class="topnav" id="myTopnav">
+        <a href="./nuevo.php" class="<?php echo ($PaginaActual == 'nuevo.php') ? 'active' : ''; ?>">Formulario de Ventas</a>
+        <a href="./listado.php" class="<?php echo ($PaginaActual == 'listado.php') ? 'active' : ''; ?>">Listado de Ventas</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
+    <div class="formulario-venta-container">
+        <h2 class="formulario-venta-titulo">Registrar Venta</h2>
 
-    <div class="formulario-venta-field">
-        <label for="nombreCliente" class="formulario-venta-label">Nombre del Cliente</label>
-        <input type="text" id="nombreCliente" readonly placeholder="Nombre del Cliente" class="formulario-venta-input">
-        <button class="formulario-venta-boton2" onclick="insertarFactura();">Iniciar Factura</button>
-    </div>
+        <div class="formulario-venta-field">
+            <label for="ciCliente" class="formulario-venta-label">Cédula del Cliente</label>
+            <input type="text" id="ciCliente" name="cedula" placeholder="Cédula" required class="formulario-venta-input">
+            <button class="formulario-venta-boton" onclick="consultarCliente();">Buscar</button>
+        </div>
 
-    <div class="formulario-venta-field">
-        <label for="numeroFactura" class="formulario-venta-label">Número de Factura</label>
-        <input type="text" id="numeroFactura" name="id_factura_cabecera" readonly class="formulario-venta-input">
-    </div>
+        <div class="formulario-venta-field">
+            <label for="nombreCliente" class="formulario-venta-label">Nombre del Cliente</label>
+            <input type="text" id="nombreCliente" readonly class="formulario-venta-input-second">
+            <button class="formulario-venta-boton2" onclick="insertarFactura();">Iniciar Factura</button>
+        </div>
 
-    <div class="input-field">
-        <label for="id_categoria" class="label">Categoría</label>
-        <select name="categoria" id="categoria" onchange="cargarProductos(this.value)" required>
-            <option value="" disabled selected>Selecciona una categoria</option>
-            <?php
-            foreach ($resultado4 as $categoria) {
-                echo "<option value='" . $categoria['id_categoria'] . "'>" . $categoria['nombre_categoria'] . "</option>";
-            }
-            ?>
-        </select>
-    </div>
+        <div class="formulario-venta-field">
+            <label for="numeroFactura" class="formulario-venta-label">Número de Factura</label>
+            <input type="text" id="numeroFactura" name="id_factura_cabecera" readonly class="formulario-venta-input-second">
+        </div>
 
-    <div class="input-field">
-        <label for="id_producto" class="label">Producto</label>
-        <select name="producto[]" id="id_producto" required>
-            <option value="" disabled selected>Selecciona primero la categoría</option>
+        <div class="input-field">
+            <label for="id_categoria" class="label">Categoría</label>
+            <select name="categoria" id="categoria" onchange="cargarProductos(this.value)" required>
+                <option value="" disabled selected>Selecciona una categoria</option>
+                <?php
+                foreach ($resultado4 as $categoria) {
+                    echo "<option value='" . $categoria['id_categoria'] . "'>" . $categoria['nombre_categoria'] . "</option>";
+                }
+                ?>
+            </select>
+        </div>
 
-        </select>
-    </div>
-    <br>
-    <div class="formulario-venta-field">
-        <label for="txtCantidad" class="formulario-venta-label">Cantidad</label>
-        <input type="text" id="txtCantidad" name="cantidad" placeholder="Cantidad" class="formulario-venta-input">
-        <button class="formulario-venta-boton" onclick="consultarProducto();" id="btnAgregar">Agregar</button>
-    </div>
+        <div class="input-field">
+            <label for="id_producto" class="label">Producto</label>
+            <select name="producto[]" id="id_producto" required>
+                <option value="" disabled selected>Selecciona primero la categoría</option>
 
-    <div class="formulario-venta-table-container">
+            </select>
+        </div>
+        <div class="formulario-venta-field">
+            <label for="txtCantidad" class="formulario-venta-label">Cantidad</label>
+            <input type="text" id="txtCantidad" name="cantidad" placeholder="Cantidad" class="formulario-venta-input">
+            <button class="formulario-venta-boton" onclick="consultarProducto();" id="btnAgregar">Agregar</button>
+        </div>
+
+        <div class="formulario-venta-table-container">
+            <table id="customers" class="formulario-venta-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="resultadoProducto">
+
+                </tbody>
+            </table>
+        </div>
+
         <table class="formulario-venta-table">
-            <thead>
+            <tfoot>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio Unitario</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
+                    <th id="subtotal">Sub Total:</th>
+                    <th id="iva">IVA %:</th>
+                    <th id="total">Total Factura:</th>
                 </tr>
-            </thead>
-            <tbody id="resultadoProducto">
-
-            </tbody>
+            </tfoot>
         </table>
-    </div>
 
-    <table class="formulario-venta-table">
-        <tfoot>
-            <tr>
-                <th id="subtotal">Sub Total:</th>
-                <th id="iva">IVA %:</th>
-                <th id="total">Total Factura:</th>
-            </tr>
-        </tfoot>
-    </table>
-
-    <div class="formulario-venta-field">
-        <button class="formulario-venta-boton" onclick="imprimirFactura();" id="btnImprimir">Finalizar e Imprimir</button>
+        <div class="formulario-venta-field">
+            <button class="formulario-venta-boton" onclick="imprimirFactura();" id="btnImprimir">Finalizar e Imprimir</button>
+        </div>
     </div>
 </div>
-
 
 <script>
     var id = 0;
@@ -175,7 +184,7 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
 
         // Realizar petición AJAX a ticket.php
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "./RECEIPT/ticket.php", true);
+        xhr.open("POST", "./RECEIPT/factura.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.responseType = 'blob'; // Esperamos una respuesta tipo blob (archivo)
 
@@ -260,6 +269,13 @@ $resultado2 = $query->fetchAll(PDO::FETCH_ASSOC);
     function consultarProducto() {
         var id_producto = document.getElementById("id_producto").value;
         var cant = document.getElementById("txtCantidad").value;
+
+        // Validar si cantidad está vacío
+        if (cant.trim() === "") {
+            alert("Debe agragar la cantidad primero");
+            return; 
+        }
+
 
         $.ajax({
             url: 'cargar_productos.php',

@@ -13,7 +13,7 @@ $clientes = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
     <h1>Clientes</h1>
     <a class="botonReporte" href="<?= $Direccion ?>cliente/pdf_cliente.php" target="_blank">
-    <i class="fas fa-plus"></i> Reporte PDF
+    <i class="fas fa-file"></i> Reporte PDF
     <a class="botonGuardar" href="<?= $Direccion ?>cliente/nuevo.php">
       <i class="fas fa-plus"></i> Registrar
     </a>

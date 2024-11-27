@@ -37,6 +37,21 @@ $mascota = $consulta->fetch(PDO::FETCH_OBJ);
                         <option value="Hembra">Hembra</option>
                     </select>
                 </div>
+                <label for="nombre" class="label">Dueño</label>
+                <div class="input-field">
+                    <select name="id_dueño" required>
+                        <option value="">Dueño</option>
+                        <?php
+                        include '../db/db.php';
+                        $sentencia = $conexion->query("SELECT * FROM cliente");
+                        $clientes = $sentencia->fetchAll(PDO::FETCH_OBJ);
+                        foreach ($clientes as $cliente) {
+                            echo "<option value='" . $cliente->id_dueño . "'>" . $cliente->nombre_cliente . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+
                 <div class="input-field button">
                     <button class="boton" type="submit">Editar</button>
                     <input type="hidden" name="id_mascota" placeholder="" required value="<?=$mascota->id_mascota?>">

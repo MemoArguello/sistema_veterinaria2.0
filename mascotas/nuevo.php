@@ -30,6 +30,19 @@
                         <option value="Hembra">Hembra</option>
                     </select>
                 </div>
+                <div class="input-field">
+                    <select name="id_cliente" required>
+                        <option value="">Dueño</option>
+                        <?php
+                        include '../db/db.php';
+                        $sentencia = $conexion->query("SELECT * FROM cliente");
+                        $clientes = $sentencia->fetchAll(PDO::FETCH_OBJ);
+                        foreach ($clientes as $cliente) {
+                            echo "<option value='" . $cliente->id_cliente . "'>" . $cliente->nombre . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
                 <div class="input-field button">
                     <button class="boton" type="submit">Guardar</button>

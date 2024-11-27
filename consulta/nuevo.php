@@ -10,14 +10,6 @@ include '../db/db.php';
 
             <form action="./guardar.php" method="POST">
             <input type="hidden" name="id_usuario" placeholder="" required value="<?=$_SESSION['id_usuario']?>"> 
-                <label for="nombre" class="label">Motivo de consulta</label>
-                <div class="input-field">
-                    <input type="text" name="descripcion" placeholder="" required>
-                </div>
-                <label for="nombre" class="label">Fecha de consulta</label>
-                <div class="input-field">
-                    <input type="date" name="fecha" placeholder="" required>
-                </div>
                 <label for="nombre" class="label">Mascota</label>
                 <div class="input-field">
                     <select name="id_mascota" required>
@@ -43,6 +35,14 @@ include '../db/db.php';
                         }
                         ?>
                     </select>
+                </div>
+                <label for="nombre" class="label">Motivo de consulta</label>
+                <div class="input-field">
+                    <input type="text" name="descripcion" placeholder="" required>
+                </div>
+                <label for="nombre" class="label">Fecha de consulta</label>
+                <div class="input-field">
+                    <input type="date" name="fecha" placeholder="" required>
                 </div>
                 <div class="input-field button">
                     <button class="boton" type="submit">Guardar</button>

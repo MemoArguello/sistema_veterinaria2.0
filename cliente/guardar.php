@@ -16,12 +16,13 @@ if (empty($_POST["nombre"]) || empty($_POST["cedula_ruc"])) {
 
     $guardar = $conexion->prepare("INSERT INTO cliente (nombre, cedula_ruc) VALUES (?, ?)");
     $resultado = $guardar->execute([$nombre, $cedula_ruc]);
+
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     } else {
         echo "<script>alert('No se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     }
     
 }

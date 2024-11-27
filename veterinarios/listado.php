@@ -13,7 +13,7 @@ $veterinarios = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
     <h1>Veterinarios</h1>
     <a class="botonReporte" href="<?= $Direccion ?>veterinarios/pdf_veterinarios.php" target="_blank">
-    <i class="fas fa-plus"></i> Reporte PDF
+    <i class="fas fa-file"></i> Reporte PDF
     <a class="botonGuardar" href="<?= $Direccion ?>veterinarios/nuevo.php">
       <i class="fas fa-plus"></i> Registrar
     </a>

@@ -3,11 +3,16 @@
 <?php
 
 include '../db/db.php';
-$sentencia = $conexion->query("SELECT * FROM producto");
+$sentencia = $conexion->query("SELECT * FROM producto WHERE estado=1");
 $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-$sentencia = $conexion->query("SELECT * FROM proveedor");
+$sentencia = $conexion->query("SELECT * FROM proveedor WHERE estado=1");
 $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+$consulta = $conexion->query("SELECT * FROM caja WHERE estado_caja = 'Abierto'");
+$consulta->execute();
+
+$caja = $consulta->fetch(PDO::FETCH_OBJ);
 
 ?>
 <div class="container">
@@ -49,6 +54,7 @@ $proveedores = $sentencia->fetchAll(PDO::FETCH_OBJ);
                 <div class="input-field button">
                     <button class="boton" type="submit">Guardar</button>
                     <input type="hidden" name="stock" value="<?=$producto->stock?>">
+                    <input type="hidden" name="ingreso" value="<?=$caja->egreso?>">
                 </div>
             </form>
         </div>

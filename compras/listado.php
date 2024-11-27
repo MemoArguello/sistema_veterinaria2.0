@@ -16,7 +16,7 @@ $compras = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
     <h1>Compras</h1>
     <a class="botonReporte" href="<?= $Direccion ?>compras/pdf_compras.php" target="_blank">
-      <i class="fas fa-plus"></i> Reporte PDF
+      <i class="fas fa-file"></i> Reporte PDF
     <a class="botonGuardar" href="<?= $Direccion ?>compras/nuevo.php">
       <i class="fas fa-plus"></i> Registrar
     </a>
@@ -33,8 +33,8 @@ $compras = $consulta->fetchAll(PDO::FETCH_OBJ);
     <tr>
       <?php foreach ($compras as $compra): ?>
       <td><?= $compra->id_compras ?></td>
-      <td><?= $compra->id_producto ?></td>
-      <td><?= $compra->id_proveedor ?></td>
+      <td><?= $compra->nombre_producto ?></td>
+      <td><?= $compra->nombre_proveedor ?></td>
       <td><?= $compra->cantidad ?></td>
       <td><?= $compra->precio_compra ?></td>
       <td><?= $compra->total_gasto ?></td>

@@ -13,8 +13,10 @@ $categorias = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
 <h1>Categorias</h1>
   <a class="botonReporte" href="<?= $Direccion ?>categoria/pdf_categoria.php" target="_blank">
-  <i class="fas fa-plus"></i> Reporte PDF
-    <a class="botonGuardar" href="<?= $Direccion ?>categoria/nuevo.php">Registrar</a>
+  <i class="fas fa-file"></i> Reporte PDF
+  <a class="botonGuardar" href="<?= $Direccion ?>categoria/nuevo.php">
+  <i class="fas fa-plus"></i>  
+  Registrar</a>
   <table>
     <tr>
       <th>ID</th>

@@ -13,8 +13,8 @@ $cajas = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
     <h1>Registro de Cajas</h1>
     <a class="botonReporte" href="<?= $Direccion ?>cliente/pdf_cliente.php" target="_blank">
-        <i class="fas fa-plus"></i> Reporte PDF
-        <a class="botonGuardar" href="<?= $Direccion ?>caja/apertura.php">
+        <i class="fas fa-file"></i> Reporte PDF
+        <a class="botonGuardar" href="<?= $Direccion ?>caja/nuevo.php">
             <i class="fas fa-plus"></i> Abrir Caja
         </a>
         <table>
@@ -26,21 +26,29 @@ $cajas = $consulta->fetchAll(PDO::FETCH_OBJ);
                 <th>Egresos</th>
                 <th>Monto Cierre</th>
                 <th>Estado</th>
+                <th></th>
             </tr>
             <tr>
-            <?php foreach($cajas as $caja): ?>
-                <tr>
-                    <td data-label=""><?=$caja->id_caja?></td>
-                    <td data-label=""><?=$caja->apertura_caja?></td>
-                    <td data-label=""><?=$caja->fecha_cierre?></td>
-                    <td data-label=""><?=$caja->id_cliente?></td>
-                    <td data-label=""><?=$caja->nombre_cliente?></td>
-                    <td data-label=""><?=$caja->cedula_ruc?></td>
-                    <td data-label="">
-                        <a class="" href="eliminar_cliente.php?id=<?=$caja->id_cliente?>"><img class="edit" src="../img/delete.png" alt=""></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+                <?php foreach ($cajas as $caja): ?>
+            <tr>
+                <td data-label=""><?= $caja->id_caja ?></td>
+                <td data-label=""><?= $caja->fecha_apertura ?></td>
+                <td data-label=""><?= $caja->fecha_cierre ?></td>
+                <td data-label=""><?= $caja->ingreso ?> Gs.</td>
+                <td data-label=""><?= $caja->egreso ?> Gs.</td>
+                <td data-label=""><?= $caja->saldo_cierre ?> Gs.</td>
+                <td data-label=""><?= $caja->estado_caja?></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="dropbtn">Opciones</button>
+                        <div class="dropdown-content">
+                            <a href="cerrar_caja.php?id=<?= $caja->id_caja ?>">Cerrar Caja</a>
+                            <a href="eliminar.php?id=<?= $caja->id_caja ?>">Eliminar</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
         </tr>
         </table>
 </div>

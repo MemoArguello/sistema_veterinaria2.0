@@ -13,7 +13,7 @@ $proveedores = $consulta->fetchAll(PDO::FETCH_OBJ);
 <div class="container_listado">
     <h1>Proveedores</h1>
     <a class="botonReporte" href="<?= $Direccion ?>proveedor/pdf_proveedor.php" target="_blank">
-        <i class="fas fa-plus"></i> Reporte PDF
+    <i class="fas fa-file"></i> Reporte PDF
     </a>
     <a class="botonGuardar" href="<?= $Direccion ?>proveedor/nuevo.php">
       <i class="fas fa-plus"></i> Registrar

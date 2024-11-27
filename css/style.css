@@ -19,6 +19,7 @@ body {
   background-image: url("../img/fondo.webp");
   background-size: cover; 
   background-position: center; 
+  
 }
 
 nav {
@@ -149,10 +150,19 @@ img{
   margin-top: 90px;
 }
 
+.container-venta2{
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 38, 255, 0.1);
+  overflow: hidden;
+  margin: auto;
+  margin-top: 90px;
+  width: 70%;
+}
 
 .container-venta{
   position: relative;
-  width: 70%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 38, 255, 0.1);
@@ -239,20 +249,18 @@ img{
   height: 50px;
   width: 100%;
   margin-top: 0px;
-  background-color: #4070f4;
-  border-color:#4070f4;
+  background-color: #5d16d8;
+  border-color: #5d16d8;
   border-radius: 10px;
 }
 
 .input-field input, select{
-  position: absolute;
   height: 100%;
   width: 100%;
-  padding: 0 10px;
+  padding: 10px 10px;
   font-size: 16px;
-  border-bottom: 2px solid #4070f4;
   transition: all 0.2s ease;
-  border-color:#4070f4;
+  border-color: #a3a3a3;
   border-radius: 10px;
 }
 
@@ -445,7 +453,7 @@ tr:nth-child(even) {
 
 .dropdown-content a {
   color: rgb(255, 255, 255);
-  background-color: #2351ce;
+  background-color:  #5d16d8;
   padding: 5px 5px;
   text-decoration: none;
   display: block;
@@ -464,9 +472,33 @@ tr:nth-child(even) {
 
 .container_listado {
   position: relative;
+  height: 500px;
   max-height: 500px;
   overflow-y: auto;
   overflow-x: auto;
+  margin-top: 10%;
+}
+
+.container_listado-venta {
+  position: relative;
+  height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 10px;
+  padding: 30px;
+}
+.botonNuevo {
+  display: inline-block;
+  background-color: #5d16d8;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  position: absolute;
+  right: 355px;
+  top: 20px;
 }
 .botonReporte {
   display: inline-block;
@@ -477,7 +509,7 @@ tr:nth-child(even) {
   text-decoration: none;
   border-radius: 5px;
   position: absolute;
-  right: 165px;
+  right: 190px;
   top: 20px;
 }
 
@@ -599,8 +631,8 @@ th, td {
 
   /* Contenedor principal del formulario de ventas */
 .formulario-venta-container {
-  width: 900px;
-  margin-top: 20%;
+  width: 100%;
+  margin-top: 0;          
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -641,6 +673,15 @@ th, td {
   outline: none;
 }
 
+.formulario-venta-input-second {
+  width: 69%;
+  padding: 10px;
+  background-color: #ebebeb;
+  border: 1px solid #555454;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
 
 /* Selectores */
 
