@@ -56,7 +56,7 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
                     <input type="hidden" name="stock" value="<?= $producto->stock ?>">
                     <?php if ($caja): ?>
                         <input type="hidden" name="egreso" value="<?= $caja->egreso ?>">
-                        <?php else: ?>
+                    <?php else: ?>
                         <input type="hidden" id="egreso" name="egreso" value="0">
                     <?php endif; ?>
                 </div>

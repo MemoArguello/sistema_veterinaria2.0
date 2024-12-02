@@ -21,10 +21,10 @@ if (empty($_POST["nombre_producto"]) || empty($_POST["stock"])) {
     $resultado = $guardar->execute([$nombre, $stock, $precio, $id_proveedor, $id_categoria]);
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     } else {
         echo "<script>alert('No se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     }
     
 }

@@ -21,16 +21,16 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 20);
 
 // Título de la factura
-$pdf->Cell(0, 10, "NOMBRE DE LA EMPRESA", 0, 1, 'C');
+$pdf->Cell(0, 10, "Mi Mascota", 0, 1, 'C');
 $pdf->Ln(5);
 
 // Datos de la empresa y cliente en la misma fila
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(95, 6, "Direccion: Direccion de la empresa", 0, 0); 
+$pdf->Cell(95, 6, "Direccion: Ayolas-Misiones", 0, 0); 
 $pdf->Cell(95, 6, "Cliente: " . ($productos[0]->nombre_cliente ?? "N/A"), 0, 1); 
-$pdf->Cell(95, 6, "Telefono: Telefono de la empresa", 0, 0); 
+$pdf->Cell(95, 6, "Telefono: 0983864167", 0, 0); 
 $pdf->Cell(95, 6, "RUC: " . ($productos[0]->cedula_ruc ?? "N/A"), 0, 1); 
-$pdf->Cell(95, 6, "Email: Email de la empresa", 0, 0); 
+$pdf->Cell(95, 6, "Email: mimascota@gmail.com", 0, 0); 
 $pdf->Cell(95, 6, "", 0, 1);
 $pdf->Ln(5);
 

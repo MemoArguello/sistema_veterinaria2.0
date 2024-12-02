@@ -11,7 +11,7 @@
 
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="css/login.css">
-         
+    <link rel="shortcut icon" href="img/pet.webp">
     <title>Iniciar Sesion</title> 
 </head>
 <body>

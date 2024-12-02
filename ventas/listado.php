@@ -3,12 +3,28 @@ require "../menu/menu.php";
 require "../db/db.php";
 
 
-$consulta = $conexion->query("SELECT factura_cabecera.*, cliente.nombre 
-FROM factura_cabecera 
-JOIN cliente ON cliente.id_cliente = factura_cabecera.id_cliente 
-WHERE factura_cabecera.estado = 1 
-ORDER BY factura_cabecera.fecha_creacion DESC;
-");
+$consulta = $conexion->query("
+                                SELECT
+                                    factura_detalle.*,
+                                    factura_cabecera.*,
+                                    producto.*,
+                                    cliente.nombre
+                                FROM
+                                    factura_detalle
+                                JOIN
+                                    producto
+                                    ON producto.id_producto = factura_detalle.id_producto
+                                JOIN
+                                    factura_cabecera
+                                    ON factura_cabecera.id_cabecera = factura_detalle.id_cabecera
+                                JOIN
+                                    cliente
+                                    ON cliente.id_cliente = factura_cabecera.id_cliente
+                                WHERE 
+                                    factura_detalle.estado =1
+                                ORDER BY factura_cabecera.id_cabecera ASC
+                                
+                            ");
 $consulta->execute();
 
 $facturaTotal = $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -26,7 +42,7 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
     </div>
     <div class="container_listado-venta">
         <h1>Ventas</h1>
-        <a class="reporteAuditoria" href="<?= $Direccion ?>vacunas/pdf_vacunas.php" target="_blank">
+        <a class="reporteAuditoria" href="<?= $Direccion ?>ventas/venta_pdf.php" target="_blank">
             <i class="fas fa-plus"></i> Reporte PDF
         </a>
         <table>
@@ -34,6 +50,8 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
                 <th>N°</th>
                 <th>Factura</th>
                 <th>Cliente</th>
+                <th>Producto/Servicio</th>
+                <th>Monto</th>
                 <th>Fecha de Venta</th>
                 <th>Factura</th>
             </tr>
@@ -44,6 +62,8 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
                 <td><?= $i++ ?></td>
                 <td><?= $factura->id_cabecera ?></td>
                 <td><?= $factura->nombre ?></td>
+                <td><?= $factura->nombre_producto ?></td>
+                <td><?= $factura->total_pagar ?></td>
                 <td><?= $factura->fecha_creacion ?></td>
                 <td>
                     <form action="./RECEIPT/factura.php" method="POST" target="_blank">

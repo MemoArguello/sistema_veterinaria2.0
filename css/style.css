@@ -580,10 +580,6 @@ th, td {
   text-align: center;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
 .dropdown-content {
   display: none;

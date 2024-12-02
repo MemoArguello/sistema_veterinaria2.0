@@ -12,7 +12,7 @@ $cajas = $consulta->fetchAll(PDO::FETCH_OBJ);
 
 <div class="container_listado">
     <h1>Registro de Cajas</h1>
-    <a class="botonReporte" href="<?= $Direccion ?>cliente/pdf_cliente.php" target="_blank">
+    <a class="botonReporte" href="<?= $Direccion ?>caja/pdf_caja.php" target="_blank">
         <i class="fas fa-file"></i> Reporte PDF
         <a class="botonGuardar" href="<?= $Direccion ?>caja/nuevo.php">
             <i class="fas fa-plus"></i> Abrir Caja

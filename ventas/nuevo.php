@@ -1,8 +1,6 @@
 <?php require "../menu/menu.php" ?>
 <?php require "../db/db.php" ?>
 <?php
-
-
 $query4 = $conexion->prepare("SELECT * FROM categoria WHERE estado=1");
 $query4->execute();
 $resultado4 = $query4->fetchAll(PDO::FETCH_ASSOC);
@@ -329,7 +327,7 @@ $caja = $consulta->fetch(PDO::FETCH_OBJ);
                 cantidad: cantidad,
                 precio: precio,
                 subtotal: subtotal,
-                ingreso: ingreso
+                ingreso: ingreso,
             },
             dataType: 'json',
             success: function(data) {

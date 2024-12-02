@@ -42,88 +42,99 @@ if (!isset($_SESSION['id_usuario'])) {
 
       <div class="sidebar-content">
         <ul class="lists">
-          <li class="list">
-          <a href="<?= $Direccion ?>inicio/inicio.php" class="nav-link">
+        <li class="list">
+            <a href="<?= $Direccion ?>inicio/inicio.php" class="nav-link">
               <img src="<?= $Direccion ?>img/inicio.png" alt="">
               <span class="link">Inicio</span>
             </a>
           </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>ventas/nuevo.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/ventas.png" alt="">
-              <span class="link">Ventas</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>compras/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/compra.png" alt="">
-              <span class="link">Compras</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>caja/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/caja.png" alt="">
-              <span class="link">Caja</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>consulta/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/consultas.png" alt="">
-              <span class="link">Consultas</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>veterinarios/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/veterinario.png" alt="">
-              <span class="link">Veterinarios</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>mascotas/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/mascotas.png" alt="">
-              <span class="link">Mascotas</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>vacunas/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/vacunas.png" alt="">
-              <span class="link">Vacunas</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>productos/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/productos.png" alt="">
-              <span class="link">Productos</span>
-            </a>
-          </li>
-          <li class="list">
-            <a href="<?= $Direccion ?>categoria/listado.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/categoria.png" alt="">
-              <span class="link">Categorias</span>
-            </a>
-          </li>
+
           <li class="list">
             <a href="<?= $Direccion ?>cliente/listado.php" class="nav-link">
               <img src="<?= $Direccion ?>img/clientes.png" alt="">
               <span class="link">Clientes</span>
             </a>
           </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>mascotas/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/mascotas.png" alt="">
+              <span class="link">Mascotas</span>
+            </a>
+          </li>
+
           <li class="list">
             <a href="<?= $Direccion ?>proveedor/listado.php" class="nav-link">
               <img src="<?= $Direccion ?>img/proveedor.png" alt="">
               <span class="link">Proveedores</span>
             </a>
           </li>
-        </ul>
 
-        <div class="bottom-cotent">
           <li class="list">
-            <a href="<?= $Direccion ?>validar/cerrar_sesion.php" class="nav-link">
-              <img src="<?= $Direccion ?>img/lagout.png" alt="">
-              <span class="link">Cerrar Sesión</span>
+            <a href="<?= $Direccion ?>categoria/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/categoria.png" alt="">
+              <span class="link">Categorias</span>
             </a>
           </li>
-        </div>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>productos/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/productos.png" alt="">
+              <span class="link">Productos</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>veterinarios/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/veterinario.png" alt="">
+              <span class="link">Veterinarios</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>consulta/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/consultas.png" alt="">
+              <span class="link">Consultas</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>vacunas/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/vacunas.png" alt="">
+              <span class="link">Vacunas</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>caja/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/caja.png" alt="">
+              <span class="link">Caja</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>ventas/nuevo.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/ventas.png" alt="">
+              <span class="link">Ventas</span>
+            </a>
+          </li>
+
+          <li class="list">
+            <a href="<?= $Direccion ?>compras/listado.php" class="nav-link">
+              <img src="<?= $Direccion ?>img/compra.png" alt="">
+              <span class="link">Compras</span>
+            </a>
+          </li>
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="<?= $Direccion ?>validar/cerrar_sesion.php" class="nav-link">
+                <img src="<?= $Direccion ?>img/lagout.png" alt="">
+                <span class="link">Cerrar Sesión</span>
+              </a>
+            </li>
+          </div>
+        </ul>
+
       </div>
     </div>
   </nav>

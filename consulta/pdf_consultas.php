@@ -4,7 +4,10 @@ require "../db/db.php";
 
 // Consulta SQL para obtener los datos de los productos
 
-$consulta = $conexion->query("SELECT * FROM consultas WHERE estado=1");
+$consulta = $conexion->query("SELECT consultas.*, mascota.nombre AS nombre_mascota, veterinario.nombre AS nombre_veterinario FROM consultas 
+                              JOIN mascota ON mascota.id_mascota=consultas.id_mascota
+                              JOIN veterinario ON veterinario.id_veterinaria=consultas.id_veterinaria
+                              WHERE consultas.estado=1");
 $consulta->execute();
 
 $consultas = $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -67,8 +70,8 @@ foreach ($consultas as $consulta) {
     $pdf->Cell(30, 5, $consulta->id_consultas, 1, 0, "C");
     $pdf->Cell(40, 5, utf8_decode($consulta->descripcion), 1, 0, "C");
     $pdf->Cell(40, 5, utf8_decode($consulta->fecha), 1, 0, "C");
-    $pdf->Cell(40, 5, utf8_decode($consulta->id_mascota), 1, 0, "C");
-    $pdf->Cell(40, 5, utf8_decode($consulta->id_veterinaria), 1, 0, "C");
+    $pdf->Cell(40, 5, utf8_decode($consulta->nombre_mascota), 1, 0, "C");
+    $pdf->Cell(40, 5, utf8_decode($consulta->nombre_veterinario), 1, 0, "C");
 
     // Salto de línea al final de cada fila
     $pdf->Ln();

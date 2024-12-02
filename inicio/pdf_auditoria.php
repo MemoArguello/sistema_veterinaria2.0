@@ -2,14 +2,14 @@
 require('../fpdf/fpdf.php');
 require "../db/db.php";
 
-// Consulta SQL para obtener los datos de los productos
+// Consulta SQL para obtener los datos de Auditoria
 
-$consulta = $conexion->query("SELECT mascota.*, cliente.nombre AS nombre_cliente FROM mascota
-                              JOIN cliente ON cliente.id_cliente=mascota.id_cliente
-                              WHERE mascota.estado=1");
+$consulta = $conexion->query("SELECT auditoria.*, usuario.nombre FROM auditoria
+                              JOIN usuario ON usuario.id_usuario=auditoria.id_usuario
+                              WHERE auditoria.estado=1");
 $consulta->execute();
 
-$mascotas = $consulta->fetchAll(PDO::FETCH_OBJ);
+$auditoria = $consulta->fetchAll(PDO::FETCH_OBJ);
 
 
 // Crear la clase PDF extendiendo FPDF
@@ -19,11 +19,11 @@ class PDF extends FPDF
     function Header()
     {
         // Logo (ajusta la ruta a tu imagen)
-        $this->Image("../img/mascotas.png", 60, 10, 10);
+        $this->Image("../img/auditoria.png", 60, 10, 10);
         
         // Título
         $this->SetFont("Arial", "B", 12);
-        $this->Cell(0, 10, utf8_decode("Reporte de todas las mascotas"), 0, 1, "C");
+        $this->Cell(0, 10, utf8_decode("Registro de Actividades"), 0, 1, "C");
         
         // Fecha
         $this->SetFont("Arial", "", 10);
@@ -34,13 +34,10 @@ class PDF extends FPDF
         
         // Encabezados de tabla
         $this->SetFont("Arial", "B", 9);
-        $this->Cell(10, 5, "ID", 1, 0, "C");
-        $this->Cell(40, 5, "Nombre", 1, 0, "C");
-        $this->Cell(40, 5, "Especie", 1, 0, "C");
-        $this->Cell(40, 5, "Raza", 1, 0, "C");
-        $this->Cell(30, 5, "Sexo", 1, 0, "C");
-        $this->Cell(30, 5, "Propietario", 1, 0, "C");
-
+        $this->Cell(20, 5, "ID", 1, 0, "C");
+        $this->Cell(50, 5, "Usuario", 1, 0, "C");
+        $this->Cell(60, 5, "Informacion", 1, 0, "C");
+        $this->Cell(60, 5, "Fecha", 1, 0, "C");
         $this->Ln();
     }
 
@@ -62,18 +59,16 @@ $pdf->AliasNbPages();
 $pdf->SetMargins(10, 10, 10);
 $pdf->AddPage();
 
-// Establecer fuente y tamaño para los datos de los productos
+// Establecer fuente y tamaño para los datos de la auditoria
 $pdf->SetFont("Arial", "", 9);
 
 // Iterar sobre los datos obtenidos y agregar cada fila a la tabla del PDF
-foreach ($mascotas as $mascota) {
+foreach ($auditoria as $auditoria) {
     // ID
-    $pdf->Cell(10, 5, $mascota->id_mascota, 1, 0, "C");
-    $pdf->Cell(40, 5, utf8_decode($mascota->nombre), 1, 0, "C");
-    $pdf->Cell(40, 5, utf8_decode($mascota->especie), 1, 0, "C");
-    $pdf->Cell(40, 5, utf8_decode($mascota->raza), 1, 0, "C");
-    $pdf->Cell(30, 5, utf8_decode($mascota->sexo), 1, 0, "C");
-    $pdf->Cell(30, 5, utf8_decode($mascota->nombre_cliente), 1, 0, "C");
+    $pdf->Cell(20, 5, $auditoria->id_auditoria, 1, 0, "C");
+    $pdf->Cell(50, 5, utf8_decode($auditoria->nombre), 1, 0, "C");
+    $pdf->Cell(60, 5, utf8_decode($auditoria->informacion), 1, 0, "C");
+    $pdf->Cell(60, 5, utf8_decode($auditoria->fecha), 1, 0, "C");
 
     // Salto de línea al final de cada fila
     $pdf->Ln();

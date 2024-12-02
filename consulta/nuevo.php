@@ -35,6 +35,19 @@ include '../db/db.php';
                         }
                         ?>
                     </select>
+                    </div>
+                <label for="nombre" class="label">Vacuna(opcional)</label>
+                <div class="input-field">
+                    <select name="id_vacunas">
+                        <option value="">Selecciona una Vacuna</option>
+                        <?php
+                        $sentencia = $conexion->query("SELECT * FROM vacunas WHERE estado=1");
+                        $vacunas = $sentencia->fetchAll(PDO::FETCH_OBJ);
+                        foreach ($vacunas as $vacuna) {
+                            echo "<option value='" . $vacuna->id_vacunas . "'>" . $vacuna->nombre . "</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <label for="nombre" class="label">Motivo de consulta</label>
                 <div class="input-field">

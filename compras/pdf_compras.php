@@ -4,8 +4,10 @@ require "../db/db.php";
 
 // Consulta SQL para obtener los datos de los productos
 
-$consulta = $conexion->query("SELECT * FROM compras 
-                              WHERE estado=1");
+$consulta = $conexion->query("SELECT compras.*, proveedor.nombre_proveedor, producto.nombre_producto FROM compras 
+                            JOIN proveedor ON proveedor.id_proveedor=compras.id_proveedor 
+                            JOIN producto ON producto.id_producto=compras.id_producto
+                            WHERE compras.estado=1");
 $consulta->execute();
 
 $compras = $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -35,11 +37,11 @@ class PDF extends FPDF
         // Encabezados de tabla
         $this->SetFont("Arial", "B", 9);
         $this->Cell(20, 5, "ID", 1, 0, "C");
-        $this->Cell(34, 5, "Producto", 1, 0, "C");
-        $this->Cell(34, 5, "Proveedor", 1, 0, "C");
-        $this->Cell(34, 5, "Cantidad", 1, 0, "C");
-        $this->Cell(34, 5, "Precio Compra", 1, 0, "C");
-        $this->Cell(34, 5, "Total Gasto", 1, 0, "C");
+        $this->Cell(65, 5, "Producto", 1, 0, "C");
+        $this->Cell(40, 5, "Proveedor", 1, 0, "C");
+        $this->Cell(20, 5, "Cantidad", 1, 0, "C");
+        $this->Cell(25, 5, "Precio Compra", 1, 0, "C");
+        $this->Cell(20, 5, "Total Gasto", 1, 0, "C");
         $this->Ln();
     }
 
@@ -68,11 +70,11 @@ $pdf->SetFont("Arial", "", 9);
 foreach ($compras as $compra) {
     // ID
     $pdf->Cell(20, 5, $compra->id_compras, 1, 0, "C");
-    $pdf->Cell(34, 5, utf8_decode($compra->id_producto), 1, 0, "C");
-    $pdf->Cell(34, 5, utf8_decode($compra->id_proveedor), 1, 0, "C");
-    $pdf->Cell(34, 5, utf8_decode($compra->cantidad), 1, 0, "C");
-    $pdf->Cell(34, 5, utf8_decode($compra->precio_compra), 1, 0, "C");
-    $pdf->Cell(34, 5, utf8_decode($compra->total_gasto), 1, 0, "C");
+    $pdf->Cell(65, 5, utf8_decode($compra->nombre_producto), 1, 0, "C");
+    $pdf->Cell(40, 5, utf8_decode($compra->nombre_proveedor), 1, 0, "C");
+    $pdf->Cell(20, 5, utf8_decode($compra->cantidad), 1, 0, "C");
+    $pdf->Cell(25, 5, utf8_decode($compra->precio_compra), 1, 0, "C");
+    $pdf->Cell(20, 5, utf8_decode($compra->total_gasto), 1, 0, "C");
 
     // Salto de línea al final de cada fila
     $pdf->Ln();

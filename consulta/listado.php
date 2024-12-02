@@ -4,9 +4,10 @@ require "../db/db.php";
 
 
 
-$consulta = $conexion->query("SELECT consultas.*, mascota.nombre AS nombre_mascota, veterinario.nombre AS nombre_veterinario FROM consultas 
+$consulta = $conexion->query("SELECT consultas.*, mascota.nombre AS nombre_mascota, veterinario.nombre AS nombre_veterinario, vacunas.nombre AS nombre_vacunas FROM consultas 
                               JOIN mascota ON mascota.id_mascota=consultas.id_mascota
                               JOIN veterinario ON veterinario.id_veterinaria=consultas.id_veterinaria
+                              LEFT JOIN vacunas ON vacunas.id_vacunas=consultas.id_vacunas
                               WHERE consultas.estado=1");
 $consulta->execute();
 
@@ -28,6 +29,7 @@ $consultas = $consulta->fetchAll(PDO::FETCH_OBJ);
         <th>Fecha</th>
         <th>Mascota</th>
         <th>Veterinario</th>
+        <th>Vacunas</th>
         <th></th>
       </tr>
     <tr>
@@ -38,6 +40,7 @@ $consultas = $consulta->fetchAll(PDO::FETCH_OBJ);
       <td><?= $consulta->fecha ?></td>
       <td><?= $consulta->nombre_mascota ?></td>
       <td><?= $consulta->nombre_veterinario ?></td>
+      <td><?= $consulta->nombre_vacunas ?? 'No aplicado' ?></td>
       <td>
         <div class="dropdown">
           <button class="dropbtn">Opciones</button>

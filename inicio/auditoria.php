@@ -15,14 +15,15 @@ $PaginaActual = basename($_SERVER['PHP_SELF']);
     <div class="topnav" id="myTopnav">
         <a href="./inicio.php" class="<?php echo ($PaginaActual == 'inicio.php') ? 'active' : ''; ?>">Estadísticas</a>
         <a href="./auditoria.php" class="<?php echo ($PaginaActual == 'auditoria.php') ? 'active' : ''; ?>">Auditoría</a>
+        <a href="../usuarios/listado.php" class="<?php echo ($PaginaActual == 'listado.php') ? 'active' : ''; ?>">Usuarios</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
     <div class="container_listado-venta">
         <h1>Auditoria</h1>
-        <a class="reporteAuditoria" href="<?= $Direccion ?>vacunas/pdf_vacunas.php" target="_blank">
-            <i class="fas fa-plus"></i> Reporte PDF
+        <a class="reporteAuditoria" href="<?= $Direccion ?>inicio/pdf_auditoria.php" target="_blank">
+            <i class="fas fa-file"></i> Reporte PDF
         </a>
         <table>
             <tr>

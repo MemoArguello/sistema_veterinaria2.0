@@ -18,7 +18,7 @@ if (empty($_POST["ruc_proveedor"]) || empty($_POST["nombre_proveedor"])) {
     $resultado = $guardar->execute([$ruc_proveedor, $nombre_proveedor]);
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     } else {
         echo "<script>alert('No se registro correctamente');
                 window.location.href='./nuevo.php';</script>";

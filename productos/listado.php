@@ -15,7 +15,7 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
 ?>
 
 <div class="container_listado">
-  <h1>Productos</h1>
+  <h1>Productos/Servicios</h1>
   <a class="botonGuardar" href="<?= $Direccion ?>productos/nuevo.php">
     <i class="fas fa-plus"></i> Registrar
   </a>
@@ -35,9 +35,10 @@ $productos = $consulta->fetchAll(PDO::FETCH_OBJ);
         <th></th>
       </tr>
       <tr>
-        <?php foreach ($productos as $producto): ?>
+        <?php $i = 1;
+        foreach ($productos as $producto): ?>
       <tr>
-        <td><?= $producto->id_producto ?></td>
+        <td><?= $i++ ?></td>
         <td><?= $producto->nombre_producto ?></td>
         <td><?= $producto->stock == 0 ? 'No Aplica' : $producto->stock ?></td>
         <td data-label=""><?= number_format($producto->precio, 0, ',', '.') ?>Gs.</td>

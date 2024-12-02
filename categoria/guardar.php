@@ -11,7 +11,7 @@ if (empty($_POST["nombre_categoria"])) {
     $resultado = $guardar->execute([$nombre_categoria]);
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
-                window.location.href='./nuevo.php';</script>";
+                window.location.href='./listado.php';</script>";
     } else {
         echo "<script>alert('No se registro correctamente');
                 window.location.href='./nuevo.php';</script>";

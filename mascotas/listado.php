@@ -3,7 +3,7 @@ require "../menu/menu.php";
 require "../db/db.php";
 
 
-$consulta = $conexion->query("SELECT mascota.*, cliente.nombre FROM mascota
+$consulta = $conexion->query("SELECT mascota.*, cliente.nombre AS nombre_cliente FROM mascota
                               JOIN cliente ON cliente.id_cliente=mascota.id_cliente
                               WHERE mascota.estado=1");
 $consulta->execute();
@@ -37,7 +37,7 @@ $mascotas = $consulta->fetchAll(PDO::FETCH_OBJ);
       <td><?= $mascota->especie ?></td>
       <td><?= $mascota->raza ?></td>
       <td><?= $mascota->sexo ?></td>
-      <td><?= $mascota->id_cliente ?></td>
+      <td><?= $mascota->nombre_cliente ?></td>
       <td>
         <div class="dropdown">
           <button class="dropbtn">Opciones</button>

@@ -24,9 +24,28 @@ if (empty($_POST["id_producto"]) || empty($_POST["id_proveedor"]) || empty($_POS
         $auditoria = $conexion->prepare("INSERT INTO auditoria (id_usuario, informacion) VALUES (?, ?)");
         $resultado_auditoria = $auditoria->execute([$id_usuario, $informacion]);
 
-        $stock = $stockActual + $cantidad;
-        $sentencia_stock = $conexion->prepare("UPDATE producto SET stock=? WHERE id_producto = ?");
-        $resultado_stock = $sentencia_stock->execute([$stock, $producto]);
+        // Actualizacion de stock
+        $sentencia = $conexion->prepare("SELECT stock FROM producto WHERE id_producto = :id_producto AND id_proveedor IS NOT NULL");
+        $sentencia->execute([':id_producto' => $producto]);
+        $stockActual = $sentencia->fetch(PDO::FETCH_OBJ);
+        
+        if (!$stockActual) {
+            die("Producto no encontrado.");
+        }
+        
+        $nuevo_stock = $stockActual->stock + $cantidad;
+        
+        if ($nuevo_stock < 0) {
+            die("No hay suficiente stock para completar la operación.");
+        }
+        
+        $sentencia_stock = $conexion->prepare("UPDATE producto SET stock = :nuevo_stock WHERE id_producto = :id_producto");
+        $resultado_stock = $sentencia_stock->execute([
+            ':nuevo_stock' => $nuevo_stock,
+            ':id_producto' => $producto
+        ]);
+        
+        // Actualizacion de stock
 
         $proveedor = $_POST["id_proveedor"];
         $precio_compra = $_POST["precio_compra"];

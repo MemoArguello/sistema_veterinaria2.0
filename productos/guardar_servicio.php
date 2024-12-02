@@ -19,7 +19,7 @@ if (empty($_POST["nombre_producto"])) {
     $resultado = $guardar->execute([$nombre, $precio, $id_categoria]);
     if ($resultado === TRUE) {
         echo "<script>alert('Se registro correctamente');
-                window.location.href='./nuevo_servicio.php';</script>";
+                window.location.href='./listado.php';</script>";
     } else {
         echo "<script>alert('No se registro correctamente');
                 window.location.href='./nuevo_servicio.php';</script>";
