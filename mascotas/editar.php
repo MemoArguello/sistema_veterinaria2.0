@@ -8,6 +8,7 @@ try {
         $raza = $_POST["raza"];
         $sexo= $_POST["sexo"];
         $dueño= $_POST["id_cliente"];
+        $dueño= $_POST["id_cliente"];
 
         $id_usuario = $_POST["id_usuario"];
         $informacion = "Se edito una mascota";
